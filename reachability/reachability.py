@@ -3,8 +3,16 @@
 import sys
 
 def reach(adj, x, y):
-    #write your code here
-    return 0
+    visited[x] = True
+    explore(x)
+    return 1 if visited[y] else 0
+
+def explore(v):
+    visited[v] = True
+    for w in adj[v]:
+        if not visited[w]:
+           explore(w)
+
 
 if __name__ == '__main__':
     input = sys.stdin.read()
@@ -18,4 +26,5 @@ if __name__ == '__main__':
     for (a, b) in edges:
         adj[a - 1].append(b - 1)
         adj[b - 1].append(a - 1)
+    visited = [False] * n
     print(reach(adj, x, y))
