@@ -5,8 +5,17 @@ import sys
 
 def number_of_components(adj):
     result = 0
-    #write your code here
+    for i in range(n):
+      if not visited[i]:
+        explore(i)
+        result += 1
     return result
+
+def explore(v):
+    visited[v] = True
+    for w in adj[v]:
+        if not visited[w]:
+           explore(w)
 
 if __name__ == '__main__':
     input = sys.stdin.read()
@@ -18,4 +27,5 @@ if __name__ == '__main__':
     for (a, b) in edges:
         adj[a - 1].append(b - 1)
         adj[b - 1].append(a - 1)
+    visited = [False] * n
     print(number_of_components(adj))
